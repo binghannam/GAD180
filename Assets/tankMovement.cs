@@ -1,0 +1,55 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class tankMovement : MonoBehaviour
+{
+    public float sideForceSpeed;
+    private bool LSideForce = false;
+    private bool RSideForce = false;
+    private Rigidbody2D rb2d;
+    private bool shoot;
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            RSideForce = true;
+
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            LSideForce = true;
+
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            shoot = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (RSideForce == true)
+        {
+            rb2d.velocity = new Vector2(sideForceSpeed * 1, rb2d.velocity.y);
+            RSideForce = false;
+        }
+        if (LSideForce == true)
+        {
+            rb2d.velocity = new Vector2(-sideForceSpeed * 1, rb2d.velocity.y);
+            LSideForce = false;
+        }
+        if (shoot == true)
+        {
+           
+            rb2d.velocity = new Vector2(-1,0);
+
+        }
+    }
+}
