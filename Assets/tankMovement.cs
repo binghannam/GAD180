@@ -9,6 +9,15 @@ public class tankMovement : MonoBehaviour
     private bool RSideForce = false;
     private Rigidbody2D rb2d;
     private bool shoot;
+
+
+    // Artillery firing variables
+    public GameObject artilleryBullet;
+    Rigidbody artilleryRB;
+    public Transform shotPos;
+    public GameObject shells;
+    public float firePower;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -47,9 +56,22 @@ public class tankMovement : MonoBehaviour
         }
         if (shoot == true)
         {
-           
+            FireArtillery();
             rb2d.velocity = new Vector2(-1,0);
-
+            shoot = false;
         }
     }
+
+
+    public void FireArtillery()
+    {
+        shotPos.rotation = transform.rotation;
+        firePower *= 2000;
+        GameObject artilleryCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation) as GameObject;
+        artilleryRB = artilleryCopy.GetComponent<Rigidbody>();
+        artilleryRB.AddForce(transform.forward * firePower);
+        Instantiate(shells, shotPos.position, shotPos.rotation);
+    }  
+
+
 }
