@@ -1,0 +1,80 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class tankMovement : MonoBehaviour
+{
+    public float sideForceSpeed;
+    private bool LSideForce = false;
+    private bool RSideForce = false;
+    private Rigidbody2D rb2d;
+    private bool shoot;
+
+
+    // Artillery firing variables
+    public GameObject artilleryBullet;
+    Rigidbody artilleryRB;
+    public Transform shotPos;
+    public GameObject shells;
+    public float firePower;
+    private Animator anim;
+
+
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            this.transform.position += new Vector3(sideForceSpeed * Time.deltaTime, 0, 0);
+        }
+        
+        if (Input.GetKey(KeyCode.A))
+        {
+            this.transform.position += new Vector3(-sideForceSpeed * Time.deltaTime, 0, 0);
+
+        }
+       
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("Shoot");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (RSideForce == true)
+        {
+            
+            RSideForce = false;
+        }
+        if (LSideForce == true)
+        {
+            rb2d.velocity = Vector2.zero;
+            rb2d.velocity = new Vector2(-sideForceSpeed * 1, rb2d.velocity.y);
+            LSideForce = false;
+        }
+        if (shoot == true)
+        {
+            FireArtillery();
+            rb2d.velocity = new Vector2(-1,0);
+            shoot = false;
+        }
+    }
+
+    public void FireArtillery()
+    {
+        shotPos.rotation = transform.rotation;
+        firePower *= 2000;
+        GameObject artilleryCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation) as GameObject;
+        artilleryRB = artilleryCopy.GetComponent<Rigidbody>();
+        artilleryRB.AddForce(transform.forward * firePower);
+        Instantiate(shells, shotPos.position, shotPos.rotation);
+    }  
+
+}
