@@ -9,27 +9,41 @@ public class tankMovement : MonoBehaviour
     private bool RSideForce = false;
     private Rigidbody2D rb2d;
     private bool shoot;
+    private Animator anim;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.D))
         {
             RSideForce = true;
+            anim.SetBool("MovingRight", true);
+
+        }
+        else
+        {
+            anim.SetBool("MovingRight", false);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             LSideForce = true;
+            anim.SetBool("MovingLeft", true);
+
+        }
+        else
+        {
+            anim.SetBool("MovingLeft", false);
 
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            shoot = true;
+            anim.SetTrigger("Shoot");
         }
     }
 
@@ -45,11 +59,6 @@ public class tankMovement : MonoBehaviour
             rb2d.velocity = new Vector2(-sideForceSpeed * 1, rb2d.velocity.y);
             LSideForce = false;
         }
-        if (shoot == true)
-        {
-           
-            rb2d.velocity = new Vector2(-1,0);
-
-        }
+        
     }
 }
