@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class bulletScript : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class bulletScript : MonoBehaviour
     public GameObject bullet;
     private bool upB;
     private bool downB;
+    public Text EnemyHP;
+    public int HpReduction = 25;
 
     void Start()
     {
         rb2dB = GetComponent < Rigidbody2D >();
-        bullet.SetActive(false);
+
        
     }
 
@@ -42,6 +45,7 @@ public class bulletScript : MonoBehaviour
         if(shoot == true)
         {
             rb2dB.velocity = new Vector2(shotSpeed * 1, rb2dB.velocity.y);
+            rb2dB.gravityScale = 0.01f;
 
         }
         if (upB == true)
@@ -61,10 +65,13 @@ public class bulletScript : MonoBehaviour
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
-    {
+    {       
         if (collision.gameObject.tag == "enemy")
-        {
+        {   
+           
             Destroy(bullet);
+            EnemyHP.text = "HP: " + (100 - HpReduction);
+            EnemyHP.color = new Color (255, 181, 0, 255);
 
         }
 

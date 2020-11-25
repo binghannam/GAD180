@@ -17,28 +17,43 @@ public class tankMovement : MonoBehaviour
     public Transform shotPos;
     public GameObject shells;
     public float firePower;
+    private Animator anim;
+
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.D))
         {
             RSideForce = true;
+            anim.SetBool("MovingRight", true);
+
+        }
+        else
+        {
+            anim.SetBool("MovingRight", false);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             LSideForce = true;
+            anim.SetBool("MovingLeft", true);
+
+        }
+        else
+        {
+            anim.SetBool("MovingLeft", false);
 
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            shoot = true;
+            anim.SetTrigger("Shoot");
         }
     }
 
@@ -62,7 +77,6 @@ public class tankMovement : MonoBehaviour
         }
     }
 
-
     public void FireArtillery()
     {
         shotPos.rotation = transform.rotation;
@@ -72,6 +86,5 @@ public class tankMovement : MonoBehaviour
         artilleryRB.AddForce(transform.forward * firePower);
         Instantiate(shells, shotPos.position, shotPos.rotation);
     }  
-
 
 }
