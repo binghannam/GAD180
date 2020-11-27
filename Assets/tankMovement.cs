@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tankMovement : MonoBehaviour
+public class TankMovement : MonoBehaviour
 {
     public float sideForceSpeed;
     private bool LSideForce = false;
     private bool RSideForce = false;
     private Rigidbody2D rb2d;
-    private bool shoot;
+    public bool shoot;
 
 
     // Artillery firing variables

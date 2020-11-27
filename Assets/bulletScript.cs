@@ -23,7 +23,6 @@ public class bulletScript : MonoBehaviour
     {
         if(Input.GetKeyDown (KeyCode.Space))
         {   
-
             shoot = true;      
         }
 
