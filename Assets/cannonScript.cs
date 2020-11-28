@@ -7,7 +7,7 @@ public class cannonScript : MonoBehaviour
     public float rotSpeed;
     private bool up;
     private bool down;
-
+    int artilleryLeft;
 
 
     void Start()
@@ -28,35 +28,35 @@ public class cannonScript : MonoBehaviour
             down = true;
         }
 
-        
+
     }
 
     private void FixedUpdate()
     {
-        if(up == true)
+        if (up == true)
         {
-           
-            this.transform.Rotate(-rotSpeed * Time.deltaTime,0,0);
+
+            this.transform.Rotate(-rotSpeed * Time.deltaTime, 0, 0);
             up = false;
 
         }
 
         if (down == true)
         {
-            
+
             this.transform.Rotate(rotSpeed * Time.deltaTime, 0, 0);
             down = false;
 
         }
+
     }
-
-
 }
+    
 
 
 
-       
-     
 
 
-   
+
+
+

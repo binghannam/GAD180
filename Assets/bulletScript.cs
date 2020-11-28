@@ -4,71 +4,49 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+    
     private bool shoot = false;
-    public float shotSpeed;
-    public float rotSpeed;
+    Rigidbody2D rb;
     Rigidbody2D rb2dB;
-    public GameObject bullet;
+    public int shootForce;
+    public int powerMultiplier = 1;
     private bool upB;
     private bool downB;
+    public float barrelRot;
+    public GameObject barrelPos;
+    
+    [SerializeField] private Transform pfBullet;
+    [SerializeField] private tankMovement tankScriptObj;
 
     void Start()
     {
+     
         rb2dB = GetComponent < Rigidbody2D >();
-        bullet.SetActive(false);
-       
+        rb2dB.AddForce(transform.forward * shootForce * powerMultiplier);
+
     }
 
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown (KeyCode.Space))
-        {   
+        
 
-            shoot = true;      
-        }
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            upB = true;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            downB = true;
-        }
     }
-    private void FixedUpdate()
+
+    private void TankShootArtillery()
     {
-        if(shoot == true)
-        {
-            rb2dB.velocity = new Vector2(shotSpeed * 1, rb2dB.velocity.y);
 
-        }
-        if (upB == true)
-        {
-
-            this.transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
-            upB = false;
-
-        }
-
-        if (downB == true)
-        {
-
-            this.transform.Rotate(0, 0, -rotSpeed * Time.deltaTime);
-            downB = false;
-
-        }
+        powerMultiplier++;
+        
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
-        {
-            Destroy(bullet);
+        Destroy(this.gameObject);
 
-        }
 
     }
+
 
 
 
