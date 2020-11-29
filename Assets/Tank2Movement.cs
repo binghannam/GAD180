@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tankMovement : MonoBehaviour
+public class Tank2Movement : MonoBehaviour
 {
     public float sideForceSpeed;
     private bool LSideForce = false;
@@ -14,7 +14,7 @@ public class tankMovement : MonoBehaviour
     public GameObject artilleryBullet;
     public Transform shotPos;
     private bool shoot = false;
-    
+
     public int artilleryLeft;
     public int spacebarForce;
 
@@ -23,25 +23,25 @@ public class tankMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        artilleryLeft = 1;
+        artilleryLeft = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             RSideForce = true;
 
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             LSideForce = true;
 
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.RightControl))
         {
             shoot = true;
         }
@@ -72,11 +72,11 @@ public class tankMovement : MonoBehaviour
     {
 
 
-        if (artilleryLeft > 0)
+        if (artilleryLeft < 0)
         {
             GameObject pfBulletCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation);
 
-            rb2d.velocity = new Vector2(-1, 0);
+            rb2d.velocity = new Vector2(1, 0);
 
         }
 

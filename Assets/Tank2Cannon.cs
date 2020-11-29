@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cannonScript : MonoBehaviour
+public class Tank2Cannon : MonoBehaviour
 {
     public float rotSpeed;
     public float rot;
@@ -10,13 +10,13 @@ public class cannonScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             rot -= Time.deltaTime * rotSpeed;
 
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             rot += Time.deltaTime * rotSpeed;
         }
