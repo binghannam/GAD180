@@ -5,59 +5,19 @@ using UnityEngine.UI;
 
 public class bulletScript : MonoBehaviour
 {
-    
-    private bool shoot = false;
-    
+
     Rigidbody2D rb2dB;
-    public int powerMultiplier = 1;
-    public bool Player2Hit = false;
-
-    public GameObject barrelPos;
-    private float timeHeld;
-    private float minShootForce = 10;  
     public float shootForce;
-
-    public Color MaxColor;
-    public Color LowColor;
-    public Text HealthText;
-    public Image Hp;
-    public int value;
-    public int newValue;
-
-
-
-    [SerializeField] private Transform pfBullet;
-    [SerializeField] private tankMovement tankScriptObj;
 
     void Start()
     {
-     
-        rb2dB = GetComponent < Rigidbody2D >();
-        
-        rb2dB.AddForce(transform.forward * shootForce * powerMultiplier);
-
-
+        rb2dB = GetComponent<Rigidbody2D>();
+        rb2dB.AddForce(transform.forward * shootForce);
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(this.gameObject);
-        
-        if (collision.gameObject.tag == "Player2")
-        {
-            HpBar();
-        }
-    }
-    public void HpBar()
-    {
-
-        Debug.Log("isworkin");
-
-        value--;
-
-        HealthText.text = value.ToString();
-
-        Hp.color = Color.Lerp(LowColor, MaxColor, value);
-
     }
 }
+
+        

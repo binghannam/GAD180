@@ -2,54 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tankMovement : MonoBehaviour
+public class TankMovement : MonoBehaviour
 {
+    public KeyCode Right;
+    public KeyCode Left;
+    public KeyCode Up;
+    public KeyCode Down;
+
+    public GameObject Barrel;
+    public GameObject WheelF;
+    public GameObject WheelB;
+
     public float sideForceSpeed;
-    private bool LSideForce = false;
-    private bool RSideForce = false;
+    public float rotSpeed;
+    public float WheelrotSpeed;
+
     private Rigidbody2D rb2d;
 
+    private float rot;
 
-    // Artillery firing variables
-    public GameObject artilleryBullet;
-    public Transform shotPos;
-    private bool shoot = false;
-    
-    public int artilleryLeft;
-    public int spacebarForce;
-
-    [SerializeField] private Transform pfBullet;
-    [SerializeField] public bulletScript bulletScriptMini;
+    private bool LSideForce = false;
+    private bool RSideForce = false;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        artilleryLeft = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(Right))
         {
             RSideForce = true;
-
+            WheelB.transform.Rotate(WheelrotSpeed * Time.deltaTime, 0, 0);
+            WheelF.transform.Rotate(WheelrotSpeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(Left))
         {
             LSideForce = true;
-
+            WheelB.transform.Rotate(-WheelrotSpeed * Time.deltaTime, 0, 0);
+            WheelF.transform.Rotate(-WheelrotSpeed * Time.deltaTime, 0, 0);
         }
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKey(Up))
         {
-            shoot = true;
+            rot -= Time.deltaTime * rotSpeed;
         }
+        if (Input.GetKey(Down))
+        {
+            rot += Time.deltaTime * rotSpeed;
+        }
+        rot = Mathf.Clamp(rot, 325, 360);
+        Barrel.transform.eulerAngles = new Vector3(rot, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
     }
 
     private void FixedUpdate()
     {
-
         if (RSideForce == true)
         {
             rb2d.velocity = new Vector2(sideForceSpeed * 1, rb2d.velocity.y);
@@ -60,38 +66,5 @@ public class tankMovement : MonoBehaviour
             rb2d.velocity = new Vector2(-sideForceSpeed * 1, rb2d.velocity.y);
             LSideForce = false;
         }
-        if (shoot == true)
-        {
-            FireArtillery();
-            shoot = false;
-        }
     }
-
-
-    public void FireArtillery()
-    {
-
-
-        if (artilleryLeft > 0)
-        {
-            GameObject pfBulletCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation);
-
-            rb2d.velocity = new Vector2(-1, 0);
-
-        }
-
-    }
-
-
-
-    /* private void OnCollisionEnter(Collision collision)
-     {
-         if (collision.gameObject.name == "Bullet(Clone)")
-         {
-             Destroy(this.gameObject);
-         }
-     }*/
-
-
-
 }
