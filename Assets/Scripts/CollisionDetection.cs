@@ -7,11 +7,17 @@ public class CollisionDetection : MonoBehaviour
 {
     public Color MaxColor;
     public Color LowColor;
-    public Text HealthText;
-    public Image Hp;
-    public int hp = 100;
 
-    public string bullTag;
+    public Text HealthText;
+    public Image HpImage;
+    public GameObject Tank;
+    public Slider HpBar;
+
+    public AudioSource hit;
+
+    public int hp = 100;
+    public bool collided = false;
+    public bool Destroyed = false;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,15 +25,26 @@ public class CollisionDetection : MonoBehaviour
         {
             ReduceHp();
             DisplayHp();
+            hit.Play();
         }     
     }
     public void ReduceHp()
     {
         hp -= 10;
+        collided = false;
     }
     public void DisplayHp()
     {
         HealthText.text = hp.ToString();
-        Hp.color = Color.Lerp(LowColor, MaxColor, hp / 100f);
+        HpImage.color = Color.Lerp(LowColor, MaxColor, hp / 100f);
+    }
+    public void Update()
+    {
+        if(hp <= 0)
+        {
+            Destroyed = true;
+            Destroy(Tank.gameObject);
+            Destroy(HpBar.gameObject);
+        }
     }
 }

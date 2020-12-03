@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -9,6 +8,13 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject turn;
+    public AudioSFX AudioScript;
+
+
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -20,6 +26,7 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 PauseGame();
+                
             }
         }
     }
@@ -29,6 +36,8 @@ public class PauseMenu : MonoBehaviour
         turn.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        
+
     }
     public void PauseGame()
     {

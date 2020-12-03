@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class bulletScript : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
 
     Rigidbody2D rb2dB;
