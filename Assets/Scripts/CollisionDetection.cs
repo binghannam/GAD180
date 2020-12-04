@@ -11,6 +11,7 @@ public class CollisionDetection : MonoBehaviour
     public Text HealthText;
     public Image HpImage;
     public GameObject Tank;
+    public GameObject Explosion;
     public Slider HpBar;
 
     public AudioSource hit;
@@ -42,6 +43,7 @@ public class CollisionDetection : MonoBehaviour
     {
         if(hp <= 0)
         {
+            Explosion.SetActive(true);
             Destroyed = true;
             Destroy(Tank.gameObject);
             Destroy(HpBar.gameObject);

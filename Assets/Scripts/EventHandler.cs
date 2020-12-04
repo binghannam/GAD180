@@ -17,7 +17,7 @@ public class EventHandler : MonoBehaviour
     public Text WinnerText;
     private string winner;
 
-    private bool WinnerisDeclared = false;
+    public bool WinnerisDeclared = false;
 
     void Update()
     {
@@ -35,11 +35,12 @@ public class EventHandler : MonoBehaviour
             winner = "Player 1 Wins !";
             UiWinner();
             DisplayWinner();
-            FreezeTime();
+            StartCoroutine(FreezeTime());
         }
         if(WinnerisDeclared == true && Input.GetKeyDown(KeyCode.Space))
         {
-            PlayAgain();          
+            PlayAgain();
+            UnFreezeTime();
         }
         
     }
@@ -53,9 +54,14 @@ public class EventHandler : MonoBehaviour
         fight.SetActive(false);
         WinnerEvent.SetActive(true);
     }
-    void FreezeTime()
+    IEnumerator FreezeTime()
     {
+        yield return new WaitForSeconds(3);     
         Time.timeScale = 0f;
+    }
+    void UnFreezeTime()
+    {
+        Time.timeScale = 1f;
     }
     void PlayAgain()
     {
