@@ -9,6 +9,7 @@ TagManager:
   - Player1
   - Player2
   - T2Bullet
+  - spike
   layers:
   - Default
   - TransparentFX

@@ -17,22 +17,29 @@ public class CollisionDetection : MonoBehaviour
     public AudioSource hit;
 
     public int hp = 100;
-    public bool collided = false;
     public bool Destroyed = false;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "bullet")
         {
-            ReduceHp();
+            ReduceHpBullet();
             DisplayHp();
             hit.Play();
-        }     
+        }
+        if (collision.gameObject.tag == "spike")
+        {
+            ReduceHpSpike();
+            DisplayHp();
+        }
     }
-    public void ReduceHp()
+    public void ReduceHpBullet()
     {
         hp -= 10;
-        collided = false;
+    }
+    public void ReduceHpSpike()
+    {
+        hp -= 5;
     }
     public void DisplayHp()
     {

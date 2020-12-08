@@ -37,8 +37,8 @@ public class TankShooting : MonoBehaviour
     }
     public void FireArtillery()
     {
-        GameObject pfBulletCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation);
-        rb2d.velocity = new Vector2(Recoil, 0);
+        GameObject pfBulletCopy = Instantiate(artilleryBullet, shotPos.position, shotPos.rotation);       
+        rb2d.velocity = new Vector2(Recoil, 6);
         shoot = false;
     }
 }

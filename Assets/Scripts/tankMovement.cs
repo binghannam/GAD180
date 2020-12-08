@@ -14,7 +14,7 @@ public class TankMovement : MonoBehaviour
     public GameObject WheelB;
 
     public float sideForceSpeed;
-    public float rotSpeed;
+    public float barrelRotSpeed;
     public float WheelrotSpeed;
 
     private Rigidbody2D rb2d;
@@ -44,13 +44,13 @@ public class TankMovement : MonoBehaviour
         }
         if (Input.GetKey(Up))
         {
-            rot -= Time.deltaTime * rotSpeed;
+            rot -= Time.deltaTime * barrelRotSpeed;
         }
         if (Input.GetKey(Down))
         {
-            rot += Time.deltaTime * rotSpeed;
+            rot += Time.deltaTime * barrelRotSpeed;
         }
-        rot = Mathf.Clamp(rot, 325, 360);
+        rot = Mathf.Clamp(rot, 325, 380);
         Barrel.transform.eulerAngles = new Vector3(rot, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
     }
 

@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TankShooting shoot;
+    public GameObject Cam;
+    private Animator anim;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        anim = Cam.GetComponent<Animator>();
+    }
     void Update()
     {
-        
+       if(Input.GetKeyDown(shoot.Shoot))
+       {
+            ShakeCam();
+       }
     }
 
     public void ShakeCam()
     {
-
+        anim.SetTrigger("shootShake");
     }
 }
