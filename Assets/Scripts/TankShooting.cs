@@ -15,10 +15,12 @@ public class TankShooting : MonoBehaviour
     public GameObject artilleryBullet;
     public Transform shotPos;
     private Rigidbody2D rb2d;
+    private Animator anim;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -26,13 +28,14 @@ public class TankShooting : MonoBehaviour
         if (Input.GetKeyDown(Shoot))
         {
             shoot = true;
+            anim.SetTrigger("Shoot");
         }
     }
     private void FixedUpdate()
     {
         if(shoot == true)
         {
-            FireArtillery();
+            FireArtillery();           
         }
     }
     public void FireArtillery()
