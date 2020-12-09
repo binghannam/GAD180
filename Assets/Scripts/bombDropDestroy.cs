@@ -33,7 +33,7 @@ public class bombDropDestroy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (camera1 != null) { camera1.GetComponent<CameraShake>().ShakeCam(camera1); }
+       
         Destroy(this.gameObject);
         
 
