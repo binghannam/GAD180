@@ -5,41 +5,27 @@ using UnityEngine;
 public class ObjectDropInst : MonoBehaviour
 {
     public GameObject droppedObj;
-    public Transform topScreen;
-    public int dropCount;
-
-
+    public Transform Spawner;
+    private int dropCount;
 
     void Start()
     {
         StartCoroutine(DropSpawnTimer());
-
     }
-
 
     IEnumerator DropSpawnTimer()
     {
         Vector3 Pos;
         while (dropCount < 100)
         {
-
-        Pos.x = Random.Range(-8.6f, 8.6f);
-        Pos.y = 3.6f;
-        Pos.z = 0;
-
-        Instantiate(droppedObj, Pos , topScreen.rotation);
-
-        yield return new WaitForSeconds(5);
-
+            Pos.x = Random.Range(-8, 8);
+            Pos.y = 20.4f;
+            Pos.z = 0;
+            Instantiate(droppedObj, Pos , Spawner.rotation);
+            yield return new WaitForSeconds(2f);
             dropCount += 1;
-        }
-
-       
+        }      
     }
-
-   
-
-
 }
 
 

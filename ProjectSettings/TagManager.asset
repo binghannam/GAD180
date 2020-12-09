@@ -8,9 +8,9 @@ TagManager:
   - bullet
   - Player1
   - Player2
-  - T2Bullet
   - spike
   - HPDrop
+  - Crystal
   layers:
   - Default
   - TransparentFX

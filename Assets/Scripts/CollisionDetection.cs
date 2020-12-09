@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class CollisionDetection : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CollisionDetection : MonoBehaviour
     public Slider HpBar;
 
     public AudioSource hit;
+    public UnityEvent WinbyRace;
 
     public int hp = 100;
     public bool Destroyed = false;
@@ -36,6 +38,10 @@ public class CollisionDetection : MonoBehaviour
         {
             ReduceHpSpike();
             DisplayHp();
+        }
+        if (collision.gameObject.tag == "Crystal")
+        {
+            WinbyRace.Invoke();
         }
     }
     public void ReduceHpBullet()

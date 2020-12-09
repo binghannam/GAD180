@@ -15,7 +15,7 @@ public class EventHandler : MonoBehaviour
     public GameObject WinnerEvent;
 
     public Text WinnerText;
-    private string winner;
+    public string winner;
 
     public bool WinnerisDeclared = false;
 
@@ -23,19 +23,11 @@ public class EventHandler : MonoBehaviour
     {
         if(CheckTank1.Destroyed == true)
         {
-            WinnerisDeclared = true;
-            winner = "Player 2 Wins !";
-            UiWinner();
-            DisplayWinner();
-            FreezeTime();
+            Player1Died();
         }
         if (CheckTank2.Destroyed == true)
         {
-            WinnerisDeclared = true;
-            winner = "Player 1 Wins !";
-            UiWinner();
-            DisplayWinner();
-            StartCoroutine(FreezeTime());
+            Player2Died();
         }
         if(WinnerisDeclared == true && Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,19 +36,41 @@ public class EventHandler : MonoBehaviour
         }
         
     }
+    public void Player1Died()
+    {
+        WinnerisDeclared = true;
+        winner = "Player 2 Wins !";
+        UiWinner();
+        DisplayWinner();
+        FreezeTime();
+    }
+    public void Player2Died()
+    {
+        WinnerisDeclared = true;
+        winner = "Player 1 Wins !";
+        UiWinner();
+        DisplayWinner();
+        FreezeTime();
+    }
     public void DisplayWinner()
     {
         WinnerText.text = winner;
         PlayAgainTxt.SetActive(true);
+    }
+    public void RaceWin()
+    {
+        winner = "GG";
+        DisplayWinner();
+        FreezeTime();
+        UiWinner();
     }
     void UiWinner()
     {
         fight.SetActive(false);
         WinnerEvent.SetActive(true);
     }
-    IEnumerator FreezeTime()
-    {
-        yield return new WaitForSeconds(3);     
+    void FreezeTime()
+    {           
         Time.timeScale = 0f;
     }
     void UnFreezeTime()
