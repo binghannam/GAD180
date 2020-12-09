@@ -27,6 +27,11 @@ public class CollisionDetection : MonoBehaviour
             DisplayHp();
             hit.Play();
         }
+        if (collision.gameObject.tag == "HPDrop")
+        {
+            IncreaseHp();
+            DisplayHp();
+        }
         if (collision.gameObject.tag == "spike")
         {
             ReduceHpSpike();
@@ -36,6 +41,10 @@ public class CollisionDetection : MonoBehaviour
     public void ReduceHpBullet()
     {
         hp -= 10;
+    }
+    public void IncreaseHp()
+    {
+        hp += 20;
     }
     public void ReduceHpSpike()
     {
