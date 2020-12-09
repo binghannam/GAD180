@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 477111084977303918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1674168e8a4b0a47b59eea0ddd7d3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 013c87d3e0350504e9e2a38c5920161d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 0
@@ -24,7 +24,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a26b4084ea8502a41aba554d898a3b2f, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f536b61f663dbb4ab09361620d60d1e, type: 2}
     - target: {fileID: 5512941117431680699, guid: 5030e98715a9c03469aa069014a62884,
         type: 3}
       propertyPath: m_LocalPosition.x

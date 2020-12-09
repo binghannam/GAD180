@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-
+    [SerializeField] CameraShake cSh;
     Rigidbody2D rb2dB;
     public float shootForce;
 
@@ -15,7 +15,9 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+       
         Destroy(this.gameObject);
+        cSh.ShakeCam();
     }
 }
 

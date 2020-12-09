@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bombDropDestroy : MonoBehaviour
 {
-    CameraShake cSh;
+    [SerializeField] CameraShake cSh;
     Rigidbody2D rb2dB;
     public float dropForce;
     // Start is called before the first frame update
