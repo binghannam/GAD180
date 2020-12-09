@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 0
+  camera1: {fileID: 1000010122379484, guid: ec4809a5aeed80242a4e3bd1cbd40381, type: 3}
 --- !u!1001 &5331766670329387672
 PrefabInstance:
   m_ObjectHideFlags: 0
