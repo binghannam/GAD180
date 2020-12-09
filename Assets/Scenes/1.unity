@@ -27240,6 +27240,53 @@ Transform:
   m_Father: {fileID: 970487421}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &970768993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 970768995}
+  - component: {fileID: 970768994}
+  m_Layer: 0
+  m_Name: bombSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &970768994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970768993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57319f81af5a7674f8b6561a39b9dab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theBomb: {fileID: 3311020664704912736, guid: dffe2f98fc93cc74aa4218d30ec1ffae, type: 3}
+  xPos: 0
+  yPos: 0
+  bombCount: -100
+--- !u!4 &970768995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970768993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.5844083, y: -2.2352924, z: -0.17628269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970975745
 GameObject:
   m_ObjectHideFlags: 0
@@ -65968,16 +66015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151cee85f2706444390cb48c4e3bcb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Right: 100
-  Left: 97
-  Up: 119
-  Down: 115
-  Barrel: {fileID: 636883872776833465}
-  WheelF: {fileID: 7561097177132075543}
-  WheelB: {fileID: 5461544126190393604}
-  sideForceSpeed: 4
-  barrelRotSpeed: 60
-  WheelrotSpeed: 200
 --- !u!114 &1153093372128087706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66208,16 +66245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151cee85f2706444390cb48c4e3bcb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Right: 275
-  Left: 276
-  Up: 273
-  Down: 274
-  Barrel: {fileID: 3916225007300278756}
-  WheelF: {fileID: 1273397355326282772}
-  WheelB: {fileID: 3308724752972260690}
-  sideForceSpeed: 4
-  barrelRotSpeed: 60
-  WheelrotSpeed: -200
 --- !u!114 &3354916977019125452
 MonoBehaviour:
   m_ObjectHideFlags: 0
