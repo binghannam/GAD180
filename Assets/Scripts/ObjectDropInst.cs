@@ -7,6 +7,7 @@ public class ObjectDropInst : MonoBehaviour
     public GameObject droppedObj;
     public Transform Spawner;
     private int dropCount;
+    public float PosY;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class ObjectDropInst : MonoBehaviour
         while (dropCount < 100)
         {
             Pos.x = Random.Range(-8, 8);
-            Pos.y = 20.4f;
+            Pos.y = PosY;
             Pos.z = 0;
             Instantiate(droppedObj, Pos , Spawner.rotation);
             yield return new WaitForSeconds(2f);

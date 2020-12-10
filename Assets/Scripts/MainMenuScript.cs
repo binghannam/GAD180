@@ -17,10 +17,15 @@ public class MainMenuScript : MonoBehaviour
         
     }
 
-    public void Play()
+    public void Play1()
     {
         backgroundMusic.Stop();
         SceneManager.LoadScene(1);
+    }
+    public void Play2()
+    {
+        backgroundMusic.Stop();
+        SceneManager.LoadScene(2);
     }
     public void QuitApp()
     {
